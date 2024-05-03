@@ -6,9 +6,6 @@ import './styles.scss';
 const View = () => {
     return (
         <div className="container-home">
-            <div className="create-post">
-                <CreatePost className="create-post-top" />
-            </div>
             <div className="list-post">
                 <PostItem />
                 <PostItem />

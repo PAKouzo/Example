@@ -16,21 +16,26 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<ViewLayout/>}>
-          <Route path='view' element={<View />} />
+        <Route path="/" element={<ViewLayout />}>
+          {["", "/view"].map((item, idx) => (
+            <Route key={idx} path={item} element={<Home />} />
+          ))}
+          <Route path="view" element={<View />} />
         </Route>
-        <Route path='/home' element={<RootLayout />}>
-          {['home', '/home'].map((item, idx) => <Route key={idx} path={item} element={<Home />} />)}
-          <Route path='personal' element={<Personal />} />
-          <Route path='account' element={<Account />} />
+        <Route path="/home" element={<RootLayout />}>
+          {["home", "/home"].map((item, idx) => (
+            <Route key={idx} path={item} element={<Home />} />
+          ))}
+          <Route path="personal" element={<Personal />} />
+          <Route path="account" element={<Account />} />
         </Route>
-        <Route path='/auth' element={<AuthLayout />}>
-          <Route path='login' element={<Login />} />
-          <Route path='register' element={<Register />} />
+        <Route path="/auth" element={<AuthLayout />}>
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
         </Route>
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
 
 export default App;

@@ -24,10 +24,7 @@ const Header = () => {
                     </NavLink>
                 </li>
                 <li>
-                    
-                </li>
-                <li>
-                    <NavLink to={'/account'}>
+                    <NavLink to={'/home/account'}>
                         <span className="title">Tài khoản</span>
                         <AccountIcon className="icon-header" />
                     </NavLink>
@@ -37,7 +34,7 @@ const Header = () => {
                 </li>
             </ul>
             <div className='container-button'>
-                <NavLink to={'/personal'}>
+                <NavLink to={'/home/personal'}>
                     <PersonalIcon className="icon-header" />
                 </NavLink>
                 <Button onClick={() => {

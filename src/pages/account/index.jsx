@@ -1,9 +1,21 @@
 import React, { useRef, useState } from 'react';
 import { Avatar, Button, Form, Input } from 'antd';
-import mindx from '/mindxLogo.jpeg';
+import logo from '../../assets/logo.jpg'
 import './styles.scss';
 
 const Account = () => {
+    const finishUpdate = async (values) => {
+        try{
+            const response = await axios.post('http://localhost:9000/users/:userID/profile', values);
+            const token = response.data;
+            localStorage.setItem('token', token); 
+        }
+        catch{
+            message.error(
+              error.response.data.message || "Đã xảy ra lỗi khi cập nhập!"
+            );
+        }
+    }
     const inputFileRef = useRef(null);
     const [file, setFile] = useState();
     function handleChange(e) {
@@ -29,7 +41,7 @@ const Account = () => {
                     label="Ảnh"
                     name="avatar"
                 >
-                    <Avatar src={file || mindx} size={200} shape='square' />
+                    <Avatar src={file || logo} size={200} shape='square' />
                     <input ref={inputFileRef} type="file" onChange={handleChange} style={{ display: 'none' }} />
                     <br />
                     <Button onClick={() => {
@@ -39,12 +51,12 @@ const Account = () => {
                     </Button>
                 </Form.Item>
                 <Form.Item
-                    label="Tên"
-                    name="username"
+                    label="Phone"
+                    name="phone"
                     rules={[
                         {
                             required: true,
-                            message: 'Bạn cần nhập tên!',
+                            message: 'Bạn cần nhập số điện thoại!',
                         },
                     ]}
                 >
@@ -64,14 +76,8 @@ const Account = () => {
                 </Form.Item>
 
                 <Form.Item
-                    label="Mật khẩu"
-                    name="password"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Bạn cần nhập mật khẩu!',
-                        },
-                    ]}
+                    label="Bio"
+                    name="bio"
                 >
                     <Input.Password size="small" />
                 </Form.Item>

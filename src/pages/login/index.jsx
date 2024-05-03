@@ -5,21 +5,21 @@ import './styles.scss';
 import axios from 'axios';
 
 const Login = () => {
-    const navigate = useNavigate(); // Sử dụng hook navigate từ react-router-dom
+    const navigate = useNavigate(); 
 
     const finishLogin = async (values) => {
         try {
             const response = await axios.post('http://localhost:9000/users/login', values);
-            const token = response.data; // Nhận token từ phản hồi của API
-            localStorage.setItem('token', token); // Lưu token vào localStorage hoặc sessionStorage
-            navigate('/home'); // Chuyển hướng đến trang chính
+            const token = response.data;
+            localStorage.setItem('token', token); 
+            navigate('/home'); 
         } catch (error) {
             message.error(error.response.data.message || 'Đã xảy ra lỗi khi đăng nhập!');
         }
     };
     return (
         <div className="container-form-login">
-            <h1>Social app MindX Fullstack</h1>
+            <h1>Social Media App</h1>
             <Form
                 onFinish={finishLogin}
                 name="basic"
@@ -55,7 +55,7 @@ const Login = () => {
                         },
                     ]}
                 >
-                    <Input.Password size="small" />
+                    <Input.Password placeholder="password" size="small" />
                 </Form.Item>
                 <Form.Item
                     wrapperCol={{

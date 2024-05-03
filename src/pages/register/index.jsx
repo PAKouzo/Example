@@ -1,13 +1,14 @@
 import React from 'react';
 import { Form, Input, Button, message } from 'antd';
 import axios from 'axios';
-
+import { useNavigate } from "react-router-dom";
 const Register = () => {
+    const navigate = useNavigate();
     const onFinish = async (values) => {
         try {
             const response = await axios.post('http://localhost:9000/users/signup', values);
             message.success(response.data.message);
-            history.push('/auth/login');
+            navigate('/auth/login');
         } catch (error) {
             message.error(error.response.data.message || 'Đã xảy ra lỗi khi đăng ký!');
         }
@@ -74,7 +75,7 @@ const Register = () => {
                         },
                     ]}
                 >
-                    <Input.Password size="small" />
+                    <Input.Password placeholder="password" size="small" />
                 </Form.Item>
                 <Form.Item
                     label="Confirm Password"
@@ -95,7 +96,7 @@ const Register = () => {
                         }),
                     ]}
                 >
-                    <Input.Password size="small" />
+                    <Input.Password placeholder='confirm password' size="small" />
                 </Form.Item>
                 <Form.Item
                     wrapperCol={{
